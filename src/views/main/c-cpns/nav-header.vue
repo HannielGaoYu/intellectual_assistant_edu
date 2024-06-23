@@ -1,21 +1,28 @@
 <template>
-  <div class="nav-header wrap-v1">
-    <div class="left">
-      <img src="../../../assets/img/sparklogo.svg" alt="" class="logo" />
-    </div>
-    <div class="right">
-      <RouterLink to="/main/large_model">大模型</RouterLink>
-      <RouterLink to="/main/mylession">我的课程</RouterLink>
-      <RouterLink to="/main/coder">代码纠错</RouterLink>
-      <RouterLink to="/main/ranking">排行</RouterLink>
-      <RouterLink to="/main/mine">我的</RouterLink>
+  <div class="nav">
+    <div class="nav-header wrap-v1">
+      <div class="left">
+        <img src="../../../assets/img/sparklogo.svg" alt="" class="logo" />
+      </div>
+      <div class="right">
+        <RouterLink to="/main/large_model">大模型</RouterLink>
+        <RouterLink to="/main/mylession">我的课程</RouterLink>
+        <RouterLink to="/main/coder">代码纠错</RouterLink>
+        <RouterLink to="/main/ranking">排行</RouterLink>
+        <RouterLink to="/main/mine">我的</RouterLink>
+      </div>
     </div>
   </div>
+  
 </template>
 
 <script setup lang="ts"></script>
 
 <style scoped lang="less">
+.nav {
+  background-color: rgba(107, 137, 255, 0.1);
+  background: url('../../../assets/img/banner-bg.e4af44a0536dfba3cedf.png') no-repeat top  auto;
+}
 .nav-header {
   display: flex;
   justify-content: space-between;
@@ -24,8 +31,7 @@
   line-height: 70px;
   box-sizing: border-box;
   padding: 0 10px;
-  background-color: #f8f;
-
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   .left {
     display: flex;
     align-items: center;

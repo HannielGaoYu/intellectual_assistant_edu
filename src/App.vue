@@ -7,7 +7,5 @@
 <script setup lang="ts"></script>
 
 <style scoped lang="less">
-.app {
-  color: deepskyblue;
-}
+
 </style>

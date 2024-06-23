@@ -8,6 +8,8 @@ import Coder from '@/views/main/coder/index.vue'
 import Ranking from '@/views/main/ranking/index.vue'
 import Mine from '@/views/main/mine/index.vue'
 import NotFound from '@/views/error/index.vue'
+import CoderPromote from '@/views/main/coder/c-views/code-promote.vue'
+import GengerCode from '@/views/main/coder/c-views/genger-code.vue'
 
 export const router = createRouter({
   history: createWebHashHistory(),
@@ -38,7 +40,21 @@ export const router = createRouter({
         },
         {
           path: '/main/coder',
-          component: Coder
+          component: Coder,
+          children: [
+            {
+              path: '/main/coder',
+              redirect: '/main/coder/genger-code'
+            },
+            {
+              path: '/main/coder/genger-code',
+              component: GengerCode
+            },
+            {
+              path: '/main/coder/code-promote',
+              component: CoderPromote
+            }
+          ]
         },
         {
           path: '/main/ranking',
