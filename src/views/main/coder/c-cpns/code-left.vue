@@ -30,7 +30,7 @@ window.addEventListener('resize', () => {
 <style scoped lang="less">
 .code-left {
   font-size: 18px;
-  background-color: #f1f2f3;
+  background-color: rgba(131, 111, 238, 0.1);
   .code-left-nav {
     color: #000;
     .item {

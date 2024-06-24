@@ -13,3 +13,25 @@ export const coderSideData = [
     link: '/main/coder/code-promote'
   }
 ]
+
+
+export const class_nav = [
+  {
+    title: "c语言"
+  },
+  {
+    title: "c语言"
+  },
+  {
+    title: "c语言"
+  },
+  {
+    title: "c语言"
+  },
+  {
+    title: "c语言"
+  },
+  {
+    title: "c语言"
+  },
+]

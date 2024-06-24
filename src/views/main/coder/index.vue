@@ -27,7 +27,7 @@ import CodeLeftTip from './c-cpns/code-left.vue'
       margin-bottom: 8px;
       padding: 10px;
       flex: 1;
-      background-color: #f1f2f3;
+      background-color: rgba(131, 111, 238, 0.1);
     }
   }
 </style>
