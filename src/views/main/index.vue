@@ -1,7 +1,7 @@
 <template>
   <div class="main">
-    <NavHeader/>
-    <RouterView></RouterView>
+    <NavHeader />
+    <router-view></router-view>
   </div>
 </template>
 
@@ -10,7 +10,7 @@ import NavHeader from './c-cpns/nav-header.vue'
 </script>
 
 <style scoped lang="less">
-  .main {
-    color: deepskyblue;
-  }
+.main {
+  color: deepskyblue;
+}
 </style>

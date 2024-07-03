@@ -22,9 +22,7 @@
         placeholder="请输入描述"
         class="input"
         size="large"
-        style="width: 92%"
         @keyup.enter="send(text)"
-        @submit.native.prevent
       />
     </div>
   </div>
@@ -36,21 +34,22 @@ import { ref, watch, nextTick } from 'vue'
 const text = ref('')
 const message = ref('')
 const dialogue: any = ref([])
-dialogue.value.push({ answer: '欢迎使用星火大模型，你需要什么帮助呢？' })
+dialogue.value.push({ answer: '欢迎使用星火大模型' })
 
 let signUrl = 'ws://localhost:8080/ws/chat'
-let sock = createConntent()
+let sock: any
 
-const containerRef = ref()
-
-watch(dialogue.length, () => {
-  nextTick(() => {
-    scrollBottom()
-  })
+const containerRef = ref();
+ 
+ 
+watch(dialogue.length,()=>{
+    nextTick(()=>{
+        scrollBottom();
+    });
 })
-
-const scrollBottom = () => {
-  containerRef.value.scrollTop = containerRef.value.scrollHeight
+ 
+const scrollBottom = ()=>{
+    containerRef.value.scrollTop = containerRef.value.scrollHeight;
 }
 
 function createConntent() {
@@ -58,24 +57,31 @@ function createConntent() {
 }
 
 function send(text1: string) {
-  if (text1.trim() === '') {
-    text.value = ''
-    return
-  }
   dialogue.value.push(text.value)
   let len = dialogue.value.length
   text.value = ''
-  sock.send(
-    JSON.stringify({
-      userId: '1',
-      question: `${text1}`
-    })
-  )
-  sock.onmessage = function (e: any) {
-    console.log(e.data)
-    const data = JSON.parse(e.data)
-    message.value = data.answer
-    dialogue.value[len] = data
+  if (sock?.readyState !== 3 && sock?.readyState !== undefined) {
+    sock.close()
+  }
+  sock = createConntent()
+
+  if (sock.readyState === 0) {
+    setTimeout(() => {
+      if (sock.readyState === 1) {
+        console.log(text)
+        sock.send(
+          JSON.stringify({
+            userId: '1',
+            question: `${text1}`
+          })
+        )
+      }
+      sock.onmessage = function (e: any) {
+        const data = JSON.parse(e.data)
+        message.value = data.answer
+        dialogue.value[len] = data
+      }
+    }, 1000)
   }
 }
 </script>
@@ -84,7 +90,7 @@ function send(text1: string) {
 .large-model {
   position: relative;
   box-sizing: border-box;
-  // height: 100px;
+  height: 100px;
   margin: 10px;
   color: #000;
   .show-dialogue {
@@ -104,6 +110,7 @@ function send(text1: string) {
       margin-right: 16px;
     }
     .item.inquire {
+      
       background-color: #0f0;
       align-self: flex-end;
     }
@@ -143,8 +150,6 @@ function send(text1: string) {
 
   .input-content {
     position: fixed;
-    width: 80%;
-    margin-left: 39px;
     bottom: 10px;
     width: 100%;
   }
