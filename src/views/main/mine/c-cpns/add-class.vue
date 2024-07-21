@@ -1,6 +1,6 @@
 <template>
-  <div class="login">
-    <h2>login</h2>
+  <div class="add-class">
+    <h2>add-class</h2>
   </div>
 </template>
 
@@ -9,7 +9,7 @@
 </script>
 
 <style scoped lang="less">
-  .login {
+  .add-class {
     color: deepskyblue;
   }
 </style>

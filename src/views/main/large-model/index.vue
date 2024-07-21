@@ -72,7 +72,6 @@ function send(text1: string) {
     })
   )
   sock.onmessage = function (e: any) {
-    console.log(e.data)
     const data = JSON.parse(e.data)
     message.value = data.answer
     dialogue.value[len] = data

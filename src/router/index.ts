@@ -1,3 +1,5 @@
+import { LOGIN_TOKEN } from '@/global/contsants'
+import { localCache } from '@/utils/useStorage'
 import { createRouter, createWebHashHistory } from 'vue-router'
 
 const LargeModel = () => import('@/views/main/large-model/index.vue')
@@ -6,7 +8,7 @@ const Mine = () => import('@/views/main/mine/index.vue')
 const NotFound = () => import('@/views/error/index.vue')
 const CoderPromote = () => import('@/views/main/coder/c-views/code-promote.vue')
 const GengerCode = () => import('@/views/main/coder/c-views/genger-code.vue')
-const Login = () => import('@/views/login/Login.vue')
+const Login = () => import('@/views/login/LoginCms.vue')
 const Main = () => import('@/views/main/index.vue')
 const MyLession = () => import('@/views/main/mylesson/index.vue')
 const LearnProcess = () => import('@/views/main/learn-process/index.vue')
@@ -14,7 +16,7 @@ const Ranking = () => import('@/views/main/ranking/index.vue')
 
 const ShowContent = () => import('@/views/main/mylesson/c-views/show-content.vue')
 
-const video = () => import('@/views/main/mylesson/c-views/c-views/lession-video.vue')
+const video = () => import('@/views/main/mylesson/c-views/c-views/lession-video-v2.vue')
 const ppt = () => import('@/views/main/mylesson/c-views/c-views/lession-ppt.vue')
 const homework = () => import('@/views/main/mylesson/c-views/c-views/lession-homework.vue')
 const summary = () => import('@/views/main/mylesson/c-views/c-views/lesssion-summary.vue')
@@ -55,10 +57,6 @@ const routes = [
             component: ShowContent,
             name: "ShowContent",
             children: [
-              // {
-              //   path: '/main/mylession/1/1/1',
-              //   redirect: '/main/mylession/1/1/1/video'
-              // },
               {
                 path: '/main/mylession/:lession/:chapter/:section/video',
                 component: video
@@ -186,5 +184,12 @@ export const router = createRouter({
 //   }
 //   next()
 // })
+
+router.beforeEach((to, from) => {
+  const token = localCache.getStorage('userInfo')
+  if (to.path.startsWith('/main') && token === undefined) {
+    return '/login'
+  }
+})
 
 export default router

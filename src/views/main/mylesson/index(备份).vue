@@ -20,18 +20,16 @@ function createConntent() {
 }
 
 sock.onmessage = function (e) {
-  console.log(e)
   const data = JSON.parse(e.data)
   message.value = data.answer
 }
 
 sock.onopen = function () {
-  console.log('opening----')
-  console.log(sock)
+
 }
 
 sock.onclose = function () {
-  console.log('fefefeffefe')
+
 }
 
 // function send(text: string) {

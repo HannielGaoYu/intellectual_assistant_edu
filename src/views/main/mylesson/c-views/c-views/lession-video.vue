@@ -10,6 +10,13 @@
         preload="metadata"
         style="width: 200px"
       ></video>
+      <div class="fun-bar">
+        <div class="left">
+          <div class="genenator-word"></div>
+          <div class="genenator-sum"></div>
+        </div>
+        <div class="right"></div>
+      </div>
     </template>
     <div class="addVideo"></div>
   </div>
@@ -23,12 +30,11 @@ const route = useRoute()
 const lession = parseInt(String(route.params.lession))
 const chapter = parseInt(String(route.params.chapter))
 const section = parseInt(String(route.params.section))
-console.log(route.params)
+
 const data =
   class_nav[lession - 1].chapters[chapter - 1].sections[section - 1].video
     ?.videos
 
-console.log(data)
 </script>
 
 <style scoped lang="less">

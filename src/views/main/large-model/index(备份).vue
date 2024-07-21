@@ -68,7 +68,6 @@ function send(text1: string) {
   if (sock.readyState === 0) {
     setTimeout(() => {
       if (sock.readyState === 1) {
-        console.log(text)
         sock.send(
           JSON.stringify({
             userId: '1',

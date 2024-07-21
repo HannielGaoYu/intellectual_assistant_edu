@@ -1,6 +1,6 @@
 <template>
   <div class="error">
-    <h2>error</h2>
+    <h2>NotFound</h2>
   </div>
 </template>
 
@@ -10,6 +10,6 @@
 
 <style scoped lang="less">
   .error {
-    color: deepskyblue;
+    color: #000;
   }
 </style>

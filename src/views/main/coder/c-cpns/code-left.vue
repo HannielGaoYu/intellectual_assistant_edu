@@ -23,7 +23,6 @@ function currentClick(index: number) {
 const totalHeight = ref(window.innerHeight - 70)
 window.addEventListener('resize', () => {
   totalHeight.value = window.innerHeight - 70
-  console.log(totalHeight.value)
 })
 </script>
 

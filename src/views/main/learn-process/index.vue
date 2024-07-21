@@ -1,53 +1,29 @@
 <template>
   <div class="learn-process">
     <el-table :data="tableData" style="width: 100%">
-      <el-table-column prop="lession" align="center" label="课程" width="180" />
-      <el-table-column prop="totalQ" align="center" label="总题数" width="180" />
-      <el-table-column prop="waitQ" align="center" label="待完成题数" />
-      <el-table-column prop="finshQ" align="center" label="完成率" />
-      <el-table-column prop="score" align="center" label="分数" />
+      <el-table-column prop="course.name" align="center" label="课程" width="180" />
+      <el-table-column prop="exerciseNumber" align="center" label="总题数" width="180" />
+      <el-table-column prop="completionNumber" align="center" label="完成题数" />
+      <el-table-column prop="completionPercentage" align="center" label="完成率" />
+      <el-table-column prop="correctionNumber" align="center" label="正确题数" />
+      <el-table-column prop="correctionPercentage" align="center" label="正确率" />
+      <el-table-column prop="integral" align="center" label="分数" />
     </el-table>
   </div>
 </template>
 
 <script setup lang="ts">
-const tableData = [
-  {
-    lession: "java",
-    totalQ: 100,
-    waitQ: 40,
-    finshQ: '60%',
-    score: 50,
-  },
-  {
-    lession: "java",
-    totalQ: 100,
-    waitQ: 40,
-    finshQ: '60%',
-    score: 50,
-  },
-  {
-    lession: "java",
-    totalQ: 100,
-    waitQ: 40,
-    finshQ: '60%',
-    score: 50,
-  },
-  {
-    lession: "java",
-    totalQ: 100,
-    waitQ: 40,
-    finshQ: '60%',
-    score: 50,
-  },
-  {
-    lession: "java",
-    totalQ: 100,
-    waitQ: 40,
-    finshQ: '60%',
-    score: 50,
-  },
-]
+import Request from '@/service';
+import { localCache } from '@/utils/useStorage';
+import {ref} from 'vue'
+const tableData = ref([])
+
+Request.get({
+  url: `studentPerformance/AllCourseToStu/${localCache.getStorage('userInfo').id}`
+}).then(res => {
+  tableData.value = res
+})
+
 </script>
 
 <style scoped lang="less">
